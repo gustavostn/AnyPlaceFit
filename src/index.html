@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../components/fonts/century-gothic.ttf">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="index.css">
+    <title>AnyPlace Fit</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#"><img src="../components/img/logo.png" alt="Logo AnyPlace Fit"></a>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse"
+            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav align-items-center">
+                <a class="nav-link" href="#">Página inicial</a>
+                <a class="nav-link" href="./pages/sobre.html">Nossa historia</a>
+                <a class="nav-link" href="./pages/cadastro.html">Entrar</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="banner">
+        <a href="#"><img src="../components/img/mainBanner.png" alt="Banner"></a>
+    </section>
+
+    <main>
+        <section class="objetivo col-12 py-3" id="funcionamento">
+            <div class="container">
+                <h1>Encontre os melhores personais trainers</h1>
+                <div class="row justify-content-start">
+                    <h4 class="col-md-6 col-12 py-4">A <span>AnyPlace Fit</span> veio para descomplicar a sua vida, e
+                        incentivar a
+                        praticas de esportes
+                    </h4>
+                </div>
+                <div class="row justify-content-end py-4">
+                    <h4 class="col-md-6">Cadastre-se agora mesmo e <strong>encontre os melhores personais para as
+                            modalidades que deseja
+                            praticar</strong>.</h4>
+                </div>
+            </div>
+        </section>
+
+        <section class="cadastro p-4">
+            <h1>Como funciona?</h1>
+            <div class="my-2">
+                <h4>
+                    1- Faça o <a href="#">cadastro</a> em nosso sistema
+                </h4>
+                <h4>
+                    2- Irá aparecer os personais que melhor te atendem
+                </h4>
+                <h4>
+                    3- Agora você seleciona o que melhor te agrada
+                </h4>
+                <h4>
+                    4- Entre em contato com o personal e #oDeHojeTaPago
+                </h4>
+            </div>
+        </section>
+
+        <section class="personais p-4 ">
+            <h1>Os melhores personais a sua disposição</h1>
+            <div class="slide-personais container my-4">
+                <div><img src="../components/img/personal/personal-masc-2.png" alt=""></div>
+                <div><img src="../components/img/personal/personal-masc-3.png" alt=""></div>
+                <div><img src="../components/img/personal/personal-masc-3.png" alt=""></div>
+                <div><img src="../components/img/personal/personal-masc-3.png" alt=""></div>
+                <div><img src="../components/img/personal/personal-masc-3.png" alt=""></div>
+                <div><img src="../components/img/personal/personal-masc-3.png" alt=""></div>
+                <div><img src="../components/img/personal/personal-masc-3.png" alt=""></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container conteudo-rodape">
+            <div class="esq">
+                <h2>AnyPlace Fit</h2>
+                <h6><a href="#">Sobre a empresa</a></h6>
+                <h6><a href="#">Trabalho conosco</a></h6>
+                <h6><a href="../index.html">Como funciona</a></h6>
+            </div>
+            <div class="dir">
+                <h2 class="">Contato</h2>
+                <h6>gustavo.stn@outlook.com.br</h6>
+                <h6>+55 11 1234-5678</h6>
+                <h6><a href="https://github.com/gustavostn/AnyPlaceFit">repositorio github</a> </h6>
+            </div>
+            <div class="direitos">
+                <h6>@ 2020 AnyPlace Fit</h6>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 800) {
+                    $('.bg-scroll').addClass('bg-color')
+                } if ($(this).scrollTop() < 800) {
+                    $('.bg-scroll').removeClass('bg-color')
+                }
+            })
+        })
+
+        $('.slide-personais').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            speed: 200,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true
+
+                    }
+                },
+                {
+                    breakpoint: 750,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: true
+
+                    }
+                },
+                {
+                    breakpoint: 550,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false
+                    }
+                }
+            ]
+        });
+    </script>
+</body>
+
+</html>
