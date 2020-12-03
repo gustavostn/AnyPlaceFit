@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,11 @@
     <link href="../components/fonts/century-gothic.ttf">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
     <link rel="stylesheet" href="cadastro.css">
+    <script>
+
+    </script>
 </head>
 
 <body>
@@ -30,19 +34,112 @@
     </nav>
 
     <main>
-        <section class="campo-login container ">
-            <form class="form" action="GET">
-                <input name="email" type="email" placeholder="Email">
-                <input name="senha" type="password" placeholder="Senha">
-                <h6 class="senha"> <a href="#">Esqueceu sua senha?</a> </h6>
-                <button class="btn btn-login" type="submit">Entrar</button>
-                <h6>Ou</h6>
-                <button class="btn btn-cadastro" type="submit">Cadastrar</button>
+        <section class="container">
+            <div class="align-login container background ">
+                <form id="form-login" class="form" name="formEntrada" action="" method="POST">
+                    <input class="campos" name="email" type="email" placeholder="Email">
+                    <input class="campos" name="senha" type="password" placeholder="Senha">
+                    <h6 class="senha"> <a href="#">Esqueceu sua senha?</a> </h6>
+                    <input class="btn btn-login" type="submit" name="entrar" value="entrar">
+                    <h6>Ou</h6>
+                    <input class="btn btn-cadastro" type="button" value="cadastrar" onclick="register()">
+                </form>
+            </div>
+
+            <div id="form-obrigado" style="display: none;">
+                <div class="msg-obrigado">
+                    <h3>Cadastro realizado com sucesso!</h3>
+                </div>
+            </div>
+
+            <form id="form-register" style="display: none;" name="formRegister" action="" method="POST">
+                <div class="background-cadastro form-cadastro">
+                    <div class="align-cadastro">
+                        <div>
+                            <div class="input-cadastro">
+                                <input class="campo-cadastro" type="text" name="name" id="reg_name"
+                                    placeholder="Nome completo">
+                            </div>
+                            <div class="input-cadastro">
+                                <input class="campo-cadastro" type="text" name="email" id="reg_email"
+                                    placeholder="Email">
+                            </div>
+                            <div class="input-cadastro">
+                                <input class="campo-cadastro" type="text" name="email_validate" id="reg_email_validate"
+                                    placeholder="Digite seu Email novamente">
+                            </div>
+                            <div class="input-cadastro">
+                                <input class="campo-cadastro" type="password" name="senha" id="reg_senha_"
+                                    placeholder="Digite uma senha">
+                            </div>
+                            <div class="input-cadastro">
+                                <input class="campo-cadastro" type="password" name="senha_validate"
+                                    id="reg_senha_validate" placeholder="Digite sua senha novamente">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="input-cadastro">
+                                <select class="campo-cadastro" name="sexo" placeholder="Sexo">
+                                    <option value="M">
+                                        Masculino
+                                    </option>
+                                    <option value="F">
+                                        Feminino
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="input-cadastro">
+                                <select class="campo-cadastro" name="estadoCivil" placeholder="Sexo">
+                                    <option value="S">
+                                        Solteiro
+                                    </option>
+                                    <option value="C">
+                                        Casado
+                                    </option>
+                                    <option value="D">
+                                        Divorciado
+                                    </option>
+                                    <option value="V">
+                                        Viúvo
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="input-cadastro">
+                                <input class="campo-cadastro" type="text" name="telefone" id="reg_telefone"
+                                    placeholder="Telefone">
+                            </div>
+                            <div class="input-cadastro">
+                                <input class="campo-cadastro" type="text" name="celular" id="reg_celular"
+                                    placeholder="Celular">
+                            </div>
+                            <div class="input-cadastro">
+                                <input class="campo-cadastro" type="text" name="endereco" id="reg_endereco"
+                                    placeholder="Endereço completo">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="text-center py-3">
+                        <div>
+                            <span id="form_status" style="color:red;"></span>
+                        </div>
+                        <div>
+                            <span id="error_email" style="color:red;"></span>
+                        </div>
+                        <div>
+                            <span id="error_password" style="color:red;"></span>
+                        </div>
+                    </div>
+                    <div class="botao-login text-center ">
+                        <input confirma-cadastro class="btn confirma-cadastro" onclick="valideForm()" type="submit"
+                            value="cadastrar">
+                    </div><br />
+                </div>
             </form>
         </section>
     </main>
 
-    <footer class="rodape  ">
+    <footer class="rodape" id="footer">
         <div class="container conteudo-rodape ">
             <div class="esq">
                 <h2>AnyPlace Fit</h2>
@@ -62,11 +159,93 @@
         </div>
     </footer>
 
-
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
 
+        function register() {
+            $('#form-login').fadeOut(200);
+            $('#form-register').fadeIn(200);
+        }
+
+        function compareEqual(val1, val2) {
+            if (val1 != val2 || !val1.length && !val1.length)
+                return false
+            else
+                return true
+        }
+
+        function validateEmail(email) {
+            const re =
+                /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+
+        function valideForm() {
+            let form_status = true;
+            let formArr = $('#form-register').serializeArray()
+            let formSituacao = []
+            $('#footer').fadeOut(200);
+
+
+            for (let i = 0; i < formArr.length; i++) {
+                if (!formArr[i].value) {
+                    formSituacao.push(false);
+                    $('#form_status').html('Ops! Todos os campos são obrigatórios.');
+                } else {
+                    formSituacao.push(true);
+                    $('#form_status').html('');
+                }
+            }
+
+            if (!compareEqual(formArr[1].value, formArr[2].value)) {
+                formSituacao.push(false);
+                $('#error_email').html('Os campos de e-mail devem ser iguais.');
+            } else {
+                formSituacao.push(true);
+                $('#error_email').html('');
+
+                if (!validateEmail(formArr[1].value)) {
+                    formSituacao.push(false);
+                    $('#error_email').html('Por favor, digite um e-mail válido!');
+                }
+            }
+
+            if (!compareEqual(formArr[3].value, formArr[4].value)) {
+                formSituacao.push(false);
+                $('#error_password').html('Os campos de senha devem ser iguais.');
+            } else {
+                formSituacao.push(true);
+                $('#error_password').html('');
+            }
+
+            for (let y = 0; y < formSituacao.length; y++) {
+                if (!formSituacao[y]) {
+                    form_status = false;
+                }
+            }
+
+            console.log(formArr, formSituacao, form_status);
+            if (form_status) {
+                $('#form-register').fadeOut(200);
+                $('#form-obrigado').fadeIn(200);
+            }
+        }
+
+        const button = document.querySelector('[confirma-cadastro]')
+        button.onclick = confirmaDados
+
+        function confirmaDados(e) {
+            if (!valideForm()) {
+                e.preventDefault()
+            }
+        }
+
+
+    </script>
 </body>
+
+</html>

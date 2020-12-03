@@ -5,6 +5,10 @@
     outline: none;
     font-family: Century Gothic;
 }
+:root{
+    --width-login: 400px;
+    --width-cadastro: 960px;
+}
 html, body{
     color: #FFF;
     background-color: #171717; 
@@ -21,26 +25,20 @@ nav a{
 nav a:hover{
     color: #171717;
 }
-section .campo-login{
-    /* width: 100vh; */
-}
-.campo-login{
-    margin-top: 20vh;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
+.background{
     background-color: #FFF;
-    width: 400px;
     border-radius: 10px;
     box-shadow: 0 2px 4px hsla(0, 0%, 100%, 0.1), 0 8px 16px rgba(255, 255, 255, 0.1);
+    width: var(--width-login);
+    margin-top: 20vh;
 }
-.campo-login form{
+.align-login form{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 2% 0%;
 }
-.form input{
+.form .campos, .form-cadastro .campo-cadastro{
     margin-top: 7% ;
     width: 350px;
     padding: 15px;
@@ -48,40 +46,89 @@ section .campo-login{
     border: 1px solid #dddfe2;
     background-color: #f5f5f5;
 }
-.form  input:hover{
-    
+.form .campos:hover, .form-cadastro .campo-cadastro:hover{   
     border-color: #f70;
 }
 .form a{
     text-decoration: none;
     color: #000;
+    opacity: 50%;
+    font-size: 0.75em;
 }
 .form a:hover{
     color: #F70;
 }
-.form .btn{
+.form .btn, .form-cadastro .confirma-cadastro{
     text-transform: uppercase;
     margin: 5%;
     padding: 15px;
     width: 300px;
 }
-.btn-login{
+ .btn-login{
     color: white;
     background-color: #F70;
     font-size: 1.3em;
-    
 }
-.btn-cadastro{
+.form .btn-cadastro, .form-cadastro .confirma-cadastro{
     color: #d3d3d3;
     background-color: #000;
     font-size: 1.3em;
 }
-.btn-cadastro:hover{
+.btn-cadastro:hover, .form-cadastro .confirma-cadastro:hover{
     color: #F70;
 }
 .form h6{
     color: #000;
 }
+.background-cadastro{
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px hsla(0, 0%, 100%, 0.1), 0 8px 16px rgba(255, 255, 255, 0.1);
+    width: 960px;
+    margin-top: 20vh;
+  
+}
+.align-cadastro{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.msg-obrigado{
+    background-color: #F70;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    color: #000;
+    
+}
+@media(max-width: 780px){
+    .background, .background-cadastro{
+        width: 90vw;
+        background: none;
+        box-shadow: none;
+        margin: auto;
+        margin-top: 35px;  
+    }
+    .form .campos, .form-cadastro .campo-cadastro{
+        width: 90vw;
+        border:2px solid #F70 ;
+    }
+    .form .btn, .form-cadastro .confirma-cadastro{
+        width: 80vw;
+       
+    }
+    .form h6, .form a{
+        color: #FFF;
+    }
+    .btn-cadastro{
+        background-color: #FFF;
+        color: #F70;
+    }
+    
+
+}
+
 footer{
     background-color: #F70;
     margin-top: 25vh;
