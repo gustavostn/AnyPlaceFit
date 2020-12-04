@@ -246,8 +246,8 @@
         }
 */
         function loginSuccess() {
-             window.alert('Cadastro realizado com sucesso!')
-            setTimeout("window.location='/pages/home.php'", 3000);
+        
+            setTimeout("window.location='/pages/home.php'", 10);
         }
         function loginFailed() {
             window.alert('Usuario não encontrado, por favor tente novamente')

@@ -44,7 +44,11 @@
             </form>
             
             <div class="resultado">
-                
+          <script>
+            function cadastroDeletado() {
+                setTimeout("window.location='../index.html'", 3000);
+            }
+          </script>      
         <?php
             $conexao = mysqli_connect("localhost", "id15015265_anyplace_user","/BPsQ+4vb5WA_Ts!");
             $banco = mysqli_select_db($conexao, "id15015265_anyplacefit"); //Banco que será utilizado
@@ -86,15 +90,15 @@
         
             if(isset($_POST['excluir'])){
                 session_destroy();
-                echo "<h1> CADASTRO FOI EXCLUIDO COM SUCESSO! </h1>";
-                
+                echo "<h1> CADASTRO EXCLUIDO COM SUCESSO! </h1>";
+                echo "<h4> Você será redirecionado <h4>";
                 $id = $_SESSION['id'];
                 $delete = "DELETE FROM user_regs WHERE id='$id'";
                 $respDelete = mysqli_query($conexao, $delete);
                  
-                
+                echo "<script> cadastroDeletado() </script>";
                 header('Location: ./sobre.html');
-                ob_enf_fluth();
+               
                 
                 
             }
