@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: Century Gothic;
+}
+html, body{
+    color: #FFF;
+    background-color: #171717; 
+    height: 100vh; 
+}
+nav{
+    background-color: #F70;
+}
+nav a{
+    text-decoration: none;
+    color: #FFF;
+    font-size: 1.3em;
+}
+nav a:hover{
+    color: #000;
+}
+
+.opcoes .select{
+    width: 450px;
+    margin: 0px 5px;
+}
+.personais img{
+    margin: 25px 0px;
+}
+main{
+    height: 100vh;
+}
+
+
+
+
+.rodape{
+    background: #f70;
+} 
+.conteudo-rodape {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+}
+.conteudo-rodape .direitos{
+    grid-column-start: span 2;
+    opacity: 50%;
+}
+@media(max-width: 780px){
+    .conteudo-rodape{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+.rodape h2{
+    font-weight: bold;
+}
+.rodape .dir h2{
+    color: #171717;
+}
+.rodape a {
+    text-decoration: none;
+    color: #FFF;
+}
+.rodape a:hover{
+    color: #171717;
+}
+.rodape .direitos h6{
+    font-size: 0.7em;
+}

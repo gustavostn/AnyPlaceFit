@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -37,10 +38,10 @@
         <section class="container">
             <div class="align-login container background ">
                 <form id="form-login" class="form" name="formEntrada" action="" method="POST">
-                    <input class="campos" name="email" type="email" placeholder="Email">
-                    <input class="campos" name="senha" type="password" placeholder="Senha">
+                    <input class="campos" name="email_login" type="email" placeholder="Email">
+                    <input class="campos" name="senha_login" type="password" placeholder="Senha">
                     <h6 class="senha"> <a href="#">Esqueceu sua senha?</a> </h6>
-                    <input class="btn btn-login" type="submit" name="entrar" value="entrar">
+                    <input class="btn btn-login" type="submit" name="btn_logar" value="entrar">
                     <h6>Ou</h6>
                     <input class="btn btn-cadastro" type="button" value="cadastrar" onclick="register()">
                 </form>
@@ -57,11 +58,11 @@
                     <div class="align-cadastro">
                         <div>
                             <div class="input-cadastro">
-                                <input class="campo-cadastro" type="text" name="name" id="reg_name"
+                                <input class="campo-cadastro" type="text" name="nome-cad" id="reg_name"
                                     placeholder="Nome completo">
                             </div>
                             <div class="input-cadastro">
-                                <input class="campo-cadastro" type="text" name="email" id="reg_email"
+                                <input class="campo-cadastro" type="text" name="email-cad" id="reg_email"
                                     placeholder="Email">
                             </div>
                             <div class="input-cadastro">
@@ -69,7 +70,7 @@
                                     placeholder="Digite seu Email novamente">
                             </div>
                             <div class="input-cadastro">
-                                <input class="campo-cadastro" type="password" name="senha" id="reg_senha_"
+                                <input class="campo-cadastro" type="password" name="senha-cad" id="reg_senha_"
                                     placeholder="Digite uma senha">
                             </div>
                             <div class="input-cadastro">
@@ -79,7 +80,7 @@
                         </div>
                         <div>
                             <div class="input-cadastro">
-                                <select class="campo-cadastro" name="sexo" placeholder="Sexo">
+                                <select class="campo-cadastro" name="sexo-cad" placeholder="Sexo">
                                     <option value="M">
                                         Masculino
                                     </option>
@@ -89,7 +90,7 @@
                                 </select>
                             </div>
                             <div class="input-cadastro">
-                                <select class="campo-cadastro" name="estadoCivil" placeholder="Sexo">
+                                <select class="campo-cadastro" name="estadoCivil-cad" placeholder="Sexo">
                                     <option value="S">
                                         Solteiro
                                     </option>
@@ -109,15 +110,14 @@
                                     placeholder="Telefone">
                             </div>
                             <div class="input-cadastro">
-                                <input class="campo-cadastro" type="text" name="celular" id="reg_celular"
+                                <input class="campo-cadastro" type="text" name="celular-cad" id="reg_celular"
                                     placeholder="Celular">
                             </div>
                             <div class="input-cadastro">
-                                <input class="campo-cadastro" type="text" name="endereco" id="reg_endereco"
+                                <input class="campo-cadastro" type="text" name="endereco-cad" id="reg_endereco"
                                     placeholder="Endereço completo">
                             </div>
                         </div>
-
                     </div>
                     <div class="text-center py-3">
                         <div>
@@ -131,9 +131,9 @@
                         </div>
                     </div>
                     <div class="botao-login text-center ">
-                        <input confirma-cadastro class="btn confirma-cadastro" onclick="valideForm()" type="submit"
-                            value="cadastrar">
-                    </div><br />
+                        <input class="btn confirma-cadastro" name="conf-cad" onclick="valideForm()" type="submit" value="cadastrar">
+                    </div>
+                    <br />
                 </div>
             </form>
         </section>
@@ -143,7 +143,7 @@
         <div class="container conteudo-rodape ">
             <div class="esq">
                 <h2>AnyPlace Fit</h2>
-                <h6><a href="#">Sobre a empresa</a></h6>
+                <h6><a href="./sobre.html">Sobre a empresa</a></h6>
                 <h6><a href="#">Trabalho conosco</a></h6>
                 <h6><a href="../index.html">Como funciona</a></h6>
             </div>
@@ -235,7 +235,8 @@
             }
         }
 
-        const button = document.querySelector('[confirma-cadastro]')
+  /* 
+        const button = document.querySelector('.confirma-cadastro')
         button.onclick = confirmaDados
 
         function confirmaDados(e) {
@@ -243,9 +244,84 @@
                 e.preventDefault()
             }
         }
-
-
+*/
+        function loginSuccess() {
+             window.alert('Cadastro realizado com sucesso!')
+            setTimeout("window.location='/pages/home.php'", 3000);
+        }
+        function loginFailed() {
+            window.alert('Usuario não encontrado, por favor tente novamente')
+            setTimeout("window.location='cadastro.php'", 3000);
+        }
+        
+    
     </script>
 </body>
+<?php 
 
+    $conexao = mysqli_connect("localhost", "id15015265_anyplace_user","/BPsQ+4vb5WA_Ts!");
+    $banco = mysqli_select_db($conexao, "id15015265_anyplacefit");
+    
+    
+    if(isset($_POST['btn_logar'])){
+        $emailLogin = $_POST['email_login'];
+        $senhaLogin = $_POST['senha_login'];
+        
+        $selectUser = "SELECT * FROM user_regs WHERE email='$emailLogin' AND aes_decrypt(senha, 'uam') ='$senhaLogin';";
+       
+        $verRegistro = mysqli_query($conexao, $selectUser);
+        $statusRegistro = mysqli_num_rows($verRegistro);
+        
+            if($statusRegistro > 0){
+                while($consultaDados = mysqli_fetch_array($verRegistro) ){
+   
+                    $_SESSION["id"] = $consultaDados['id'];
+                    $_SESSION["nome"] = $consultaDados['nome'];
+                    $_SESSION["email"] = $consultaDados['email'];
+                    $_SESSION["senha"] = $consultaDados['senha'];
+                    $_SESSION["sexo"] = $consultaDados['sexo'];
+                    $_SESSION["estado_civil"] = $consultaDados['estado_civil'];
+                    $_SESSION["celular"] = $consultaDados['celular'];
+                    $_SESSION["endereco"] = $consultaDados['endereco'];
+                }
+                  
+                    echo "<script>loginSuccess()</script>";
+            }else{
+                
+                echo "<script>loginFailed()</script>";
+            }
+    }
+    
+    if(isset($_POST['conf-cad'])){
+        
+        $nomeCad = $_POST['nome-cad'];
+        $emailCad = $_POST['email-cad'];
+        $senhaCad = $_POST['senha-cad'];
+        $sexoCad = $_POST['sexo-cad'];
+        $estado_civilCad = $_POST['estadoCivil-cad'];
+        $celularCad = $_POST['celular-cad'];
+        $enderecoCad = $_POST['endereco-cad'];
+        
+        $insertCadastro = "INSERT INTO user_regs (nome, email, senha, sexo, estado_civil, celular, endereco) 
+        VALUES ('$nomeCad', '$emailCad', aes_encrypt('$senhaCad','uam'), '$sexoCad', '$estado_civilCad', '$celularCad', '$enderecoCad');";
+        
+        $realizaInsert = mysqli_query($conexao, $insertCadastro);
+        $statusInsert = ($realizaInsert) ? 'Usuario cadastrado com sucesso!' : 'Erro ao cadastrar usuario!' ;
+        
+            if($statusInsert > 0){
+                while($consultaDados = mysqli_fetch_array($realizaInsert) ){
+                        $_SESSION["id"] = $consultaDados['id'];
+                        $_SESSION["nome"] = $consultaDados['nome'];
+                    }
+                    echo $statusInsert;
+            }else{
+                echo $statusInsert;
+            }
+       
+    }
+    
+  
+  
+    
+?>
 </html>
